@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Kevin's BBQ Joints</title>
+</head>
+
+<body>
+	
+	{% if state %}
+	<ul>
+		{% for joint in state %}
+		<li><a href="/{{joint.id}}">{{ joint.name }}</a></li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+
+	
+</body>
+
+</html>
