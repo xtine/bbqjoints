@@ -1,0 +1,97 @@
+/*
+	Kevin's BBQ Joints
+	2/9/2011
+	Author: Christine Cheung
+*/
+
+@import url("reset.css");
+
+html {	background: #bfbcb4 url(../img/bg.png); }
+
+body {
+	font: .85em/1.5em "Helvetica Neue", Helvetica, Arial, sans-serif; 
+	background: #d6d3ca;
+	width: 960px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+h2 {
+	font: bold 1.9em Arial Black, Arial, Helvetica;
+	text-transform: uppercase;
+}
+
+h3 {
+	font-weight: bold;
+	font-size: 1.5em;
+	margin: 0 0 5px 0;
+}
+
+a {
+	color: #951a1a;
+	text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+p {	margin: 0 0 10px 0; }
+
+li { list-style: none; }
+
+header {
+	background: #ecebe7 url(/media/img/header.png) 0 15px no-repeat;
+	height: 149px;
+	text-indent: -9999px;
+}
+header a {
+	width: 469px;
+	height: 124px;
+	display: block;
+}
+
+nav {
+	background: #951a1a;
+	height: 40px;
+}
+nav ul {
+	padding: 9px 0 0 27px;
+}
+nav ul li {
+	margin: 0 25px 0 0;
+	display: inline;
+	text-transform: uppercase;
+}
+nav ul li a {
+	color: #e9eae3;
+	letter-spacing: .07em;
+	text-decoration: none;
+}
+
+section {
+	background: #fbfaf7;
+	width: 756px;
+	padding: 0;
+	float: left;
+}
+
+ul#stateList li {
+	font-size: 1.3em;
+	width: 160px;
+	padding: 15px 10px;
+	float: left;
+
+}
+
+
+aside {
+	background: #d6d3ca;
+	color: #888;
+	font-style: italic;
+	text-align: right;
+	width: 150px;
+	margin: 10px 25px 20px 0;
+	float: right;
+}
+
+footer {
+	clear: both;
+}

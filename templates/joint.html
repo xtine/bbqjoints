@@ -1,16 +1,15 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 
-<html lang="en">
-
-<head>
-	<meta charset="utf-8">
-	<title>Kevin's BBQ Joints</title>
-</head>
-
-<body>
+	{% block content %}
 	
-{{ joint.name }}
+	<h2>BBQ Joints > <a href="/joints/{{ state.state_abbr }}">{{ state.name }}</a></h2>
 	
-</body>
-
-</html>
+	<h3>{{ joint.name }}</h3>
+	{{ joint.address }}<br/>
+	{{ joint.city }}, {{ joint.state }}<br/>
+	{{ joint.phone }}<br/>
+	<a href="{{ joint.url }}">{{ joint.url }}</a><br/>
+	<br/>
+	{{ joint.notes|safe }}
+	
+	{% endblock %}	

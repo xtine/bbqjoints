@@ -157,7 +157,7 @@ class States(models.Model):
     state_abbr = models.CharField(max_length=24, blank=True)
     class Meta:
         db_table = u'states'
-        ordering = ['state_abbr']
+        ordering = ['name']
         verbose_name_plural = "States"
         
     def __unicode__(self):

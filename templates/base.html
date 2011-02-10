@@ -1,0 +1,60 @@
+<!doctype html>  
+
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<title>{% block title %}Kevin's BBQ Joints{% endblock %}</title>
+	<meta name="description" content="Kevin's BBQ Joints">
+	<meta name="author" content="Christine Cheung">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="/media/favicon.ico">
+	<link rel="apple-touch-icon" href="/media/img/apple-touch-icon.png">
+
+	<link rel="stylesheet" href="/media/css/styles.css">
+	<script src="/media/cssjs/libs/modernizr-1.6.min.js"></script>
+	<script src="/media/cssjs/libs/jquery-1.4.2.min.js"></script>
+	
+</head>
+
+<body>
+
+	<header>
+		<h1><a href="/">Kevin's BBQ Joints</a></h1>
+	</header>
+	
+	<nav>
+		<ul>
+			<li><a href="/">BBQ Joints</a></li>
+			<li><a href="/about">About</a></li>
+			<li><a href="">Meats</a></li>
+			<li><a href="">Rubs & Sauces</a></li>
+			<li><a href="">BBQ Blogs</a></li>
+			<li><a href="">Kevin's Blog</a></li>
+			<li><a href="">Contact</a></li>
+		</ul>
+	</nav>
+
+	<section id="content">
+		
+		{% block content %} {% endblock %}
+
+	</section>
+	
+	<aside>
+		<em>Advertisement</em>
+	</aside>
+
+	<footer>
+		
+	</footer>
+
+</body>
+
+</html>

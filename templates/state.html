@@ -1,23 +1,16 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 
-<html lang="en">
-
-<head>
-	<meta charset="utf-8">
-	<title>Kevin's BBQ Joints</title>
-</head>
-
-<body>
+	{% block content %}	
+	{% if joints %}
 	
-	{% if state %}
+	<h2>{{state.name}}</h2>
+	
 	<ul>
-		{% for joint in state %}
-		<li><a href="/{{joint.id}}">{{ joint.name }}</a></li>
+		{% for joint in joints %}
+		<li><a href="/{{joint.id}}">{{ joint.name }}</a><br/>
+			{{ joint.address }}, {{ joint.city }} {{ joint.state }}
+			</li>
 		{% endfor %}
 	</ul>
 	{% endif %}
-
-	
-</body>
-
-</html>
+	{% endblock %}
