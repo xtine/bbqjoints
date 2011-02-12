@@ -101,13 +101,6 @@ class DjangoSite(models.Model):
     class Meta:
         db_table = u'django_site'
 
-class Geocodes(models.Model):
-    address = models.CharField(max_length=255, primary_key=True)
-    lon = models.FloatField(null=True, blank=True)
-    lat = models.FloatField(null=True, blank=True)
-    class Meta:
-        db_table = u'geocodes'
-
 class Joints(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=225, blank=True)
@@ -133,16 +126,6 @@ class Joints(models.Model):
     def __unicode__(self):
         return self.name
 
-class Pages(models.Model):
-    id = models.IntegerField(primary_key=True)
-    title = models.CharField(max_length=384)
-    slug = models.CharField(max_length=765)
-    content = models.TextField()
-    created = models.DateTimeField(null=True, blank=True)
-    modified = models.DateTimeField(null=True, blank=True)
-    class Meta:
-        db_table = u'pages'
-
 class SearchLogs(models.Model):
     id = models.IntegerField(primary_key=True)
     query = models.CharField(max_length=165, blank=True)
@@ -162,14 +145,4 @@ class States(models.Model):
         
     def __unicode__(self):
         return self.state_abbr
-
-class Users(models.Model):
-    id = models.IntegerField(primary_key=True)
-    username = models.CharField(max_length=765)
-    password = models.CharField(max_length=765)
-    created = models.DateTimeField()
-    last_login = models.DateTimeField()
-    status = models.IntegerField(null=True, blank=True)
-    class Meta:
-        db_table = u'users'
 
