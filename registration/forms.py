@@ -67,6 +67,16 @@ class RegistrationForm(forms.Form):
                 raise forms.ValidationError(_("The two password fields didn't match."))
         return self.cleaned_data
 
+    def clean_email(self):
+        """
+        Validate that the supplied email address is unique for the
+        site.
+
+        """
+        if User.objects.filter(email__iexact=self.cleaned_data['email']):
+            raise forms.ValidationError(_("This email address is already in use. Please supply a different email address."))
+        return self.cleaned_data['email']
+
 
 class RegistrationFormTermsOfService(RegistrationForm):
     """
