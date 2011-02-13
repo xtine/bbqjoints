@@ -27,6 +27,15 @@
 
 	<header>
 		<h1><a href="/">Kevin's BBQ Joints</a></h1>
+		<div id="userWelcome">
+		{% if user.is_authenticated %}
+		You are logged in as: {{ user.username }} <br/>(<a href="/user/logout">Logout</a>)
+		{% else %}
+		<a href="{%	url registration_register %}">Register</a>
+		or
+		<a href="/user/login">Login</a>
+		{% endif %}
+		</div>
 	</header>
 	
 	<nav>
@@ -43,7 +52,13 @@
 
 	<section id="content">
 		
-		{% block content %} {% endblock %}
+		<header>
+			<h2>{% block page_heading %}{% endblock %}</h2>
+		</header>
+		
+		<article>
+		{% block content %}{% endblock %}
+		</article>
 
 	</section>
 	
@@ -52,7 +67,15 @@
 	</aside>
 
 	<footer>
-		
+		<ul>
+			<li><a href="/">BBQ Joints</a></li>
+			<li><a href="/about">About</a></li>
+			<li><a href="">Meats</a></li>
+			<li><a href="">Rubs & Sauces</a></li>
+			<li><a href="">BBQ Blogs</a></li>
+			<li><a href="">Kevin's Blog</a></li>
+			<li><a href="">Contact</a></li>
+		</ul>
 	</footer>
 
 </body>

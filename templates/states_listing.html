@@ -2,9 +2,10 @@
 	
 	{% block title %}Kevin's BBQ Joints - List By State{% endblock %}
 	
+	{% block page_heading %}BBQ Joints by State{% endblock %}
+	
 	{% block content %}
 	{% if list_of_states %}
-	
 		<ul id="stateList">
 			{% for state in list_of_states %}
 			<li><a href="joints/{{state.state_abbr|lower}}">{{ state.name }}</a></li>

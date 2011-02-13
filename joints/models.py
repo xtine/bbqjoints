@@ -133,6 +133,10 @@ class SearchLogs(models.Model):
     ip = models.CharField(max_length=45, blank=True)
     class Meta:
         db_table = u'search_logs'
+        verbose_name_plural = "Search Logs"
+    
+    def __unicode__(self):
+        return self.query
 
 class States(models.Model):
     id = models.IntegerField(primary_key=True)

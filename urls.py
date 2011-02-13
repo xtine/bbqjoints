@@ -4,7 +4,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('joints.views',
-    (r'^(?P<joint_id>\d+)/', 'joint'),
+    (r'^joint/(?P<joint_id>\d+)/', 'joint'),
     (r'^joints/(?P<state_abbr>\w+)/$', 'state'),
     (r'^$', 'index'),
 )
@@ -12,7 +12,7 @@ urlpatterns = patterns('joints.views',
 urlpatterns += patterns('',
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),
-    (r'^accounts/', include('registration.urls')),
+    (r'^user/', include('registration.urls')),
     (r'^media/(?P<path>.*)$', 'django.views.static.serve',
             {'document_root': '/Users/xtine/django/bbq/media/', 'show_indexes': True}),
 )

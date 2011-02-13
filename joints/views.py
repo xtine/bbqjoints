@@ -1,9 +1,13 @@
 from joints.models import Joints, States
 from django.shortcuts import render_to_response
 
+from django.template import RequestContext
+
+
 def index(request):
     list_of_states = States.objects.all().order_by('name')
-    return render_to_response('states_listing.html', {'list_of_states': list_of_states})
+    context = RequestContext(request)
+    return render_to_response('states_listing.html', {'list_of_states': list_of_states}, context_instance=context)
     
 def state(request, state_abbr):
     try:
@@ -11,7 +15,8 @@ def state(request, state_abbr):
         s = States.objects.get(state_abbr=state_abbr)
     except Joints.DoesNotExist:
         raise Http404
-    return render_to_response('state.html', {'joints': j, 'state': s})
+    context = RequestContext(request)
+    return render_to_response('state.html', {'joints': j, 'state': s}, context_instance=context)
     
 def joint(request, joint_id):
     try:
@@ -19,4 +24,5 @@ def joint(request, joint_id):
         s = States.objects.get(state_abbr=j.state)
     except Joints.DoesNotExist:
         raise Http404
-    return render_to_response('joint.html', {'joint': j, 'state': s})
+    context = RequestContext(request)
+    return render_to_response('joint.html', {'joint': j, 'state': s}, context_instance=context)
