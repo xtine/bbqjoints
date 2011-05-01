@@ -150,3 +150,11 @@ class States(models.Model):
     def __unicode__(self):
         return self.state_abbr
 
+class Reviews(models.Model):
+    id = models.IntegerField(primary_key=True)
+    user = models.ForeignKey('AuthUser', null=True, blank=True)
+    joint = models.ForeignKey(Joints)
+    review = models.TextField(blank=True)
+    rating = models.FloatField(null=True, blank=True)
+    
+

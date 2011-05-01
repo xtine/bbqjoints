@@ -11,6 +11,53 @@
 	{{ joint.phone }}<br/>
 	<a href="{{ joint.url }}">{{ joint.url }}</a><br/>
 	<br/>
-	{{ joint.notes|safe }}
+	{% if joint.notes %}
+    {{ joint.notes|safe }}
+    {% endif %}
+    
+    {% if reviews %}
+    <h4>Ratings and Reviews</h4>
+    {% for review in reviews %}
+    {{review.user.username}} rates:<br/>
+    {{review.rating}}<br/>
+    {{review.review}}<br/>
+    <br/>
+    {% endfor %}
+    <br/>
+    <br/>
+    {% endif %}
+    
+    {% if user.is_authenticated %}
+    
+    {% if request %}
+    Your Rating: {{request.rating}}<br/>
+    Your Review: {{request.review}}
+
+    {% else %}
+    
+    {% if user_review %}
+    <strong><em>Update Your Review:</em></strong>
+    <form action="/joint/{{joint.id}}/review/" method="post">
+        {% csrf_token %}
+        Rating: <input type="text" name="rating" id="rating" value="{{user_review.rating}}"><br/>
+        Review: <textarea name="review" id="review" cols="50" rows="10">{{user_review.review}}</textarea>
+        <br/>
+        <input type="submit" value="Submit" />
+    </form>
+    {% else %}
+    <strong><em>Write a Review:</em></strong>
+    <form action="/joint/{{joint.id}}/review/" method="post">
+        {% csrf_token %}
+        Rating: <input type="text" name="rating" id="rating"><br/>
+        Review: <textarea name="review" id="review" cols="50" rows="10"></textarea>
+        <br/>
+        <input type="submit" value="Submit" />
+    </form>
+    {% endif %}
+    {% endif %}
+    
+    {% endif %}
+
 	
 	{% endblock %}	
+

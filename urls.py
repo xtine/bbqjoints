@@ -4,6 +4,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('joints.views',
+    (r'^joint/(?P<joint_id>\d+)/review', 'review'),
     (r'^joint/(?P<joint_id>\d+)/', 'joint'),
     (r'^joints/(?P<state_abbr>\w+)/$', 'state'),
     (r'^$', 'index'),
