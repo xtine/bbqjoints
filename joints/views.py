@@ -46,8 +46,7 @@ def review(request, joint_id):
         # If User already has review, grab primary key for update
         try:
             user_review = Reviews.objects.get(user=request.user.id, joint=joint_id)
-            user_pk = request.user.id
-            print user_pk
+            user_pk = user_review.id
             user_created = user_review.created
         except:
             user_pk = None
