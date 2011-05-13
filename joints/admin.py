@@ -12,5 +12,5 @@ class SearchLogsAdmin(admin.ModelAdmin):
 admin.site.register(SearchLogs, SearchLogsAdmin)
 
 class ReviewsAdmin(admin.ModelAdmin):
-    list_display = ('user', 'joint', 'review', 'rating')
+    list_display = ('user', 'joint', 'review', 'rating', 'updated', 'created')
 admin.site.register(Reviews, ReviewsAdmin)

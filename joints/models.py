@@ -161,7 +161,7 @@ class Reviews(models.Model):
     created = models.DateTimeField()
     updated = models.DateTimeField()
     class Meta:
-        ordering = ['joint']
+        ordering = ['updated']
         verbose_name_plural = "Reviews"
         
     def __unicode__(self):
