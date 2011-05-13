@@ -165,5 +165,5 @@ class Reviews(models.Model):
         verbose_name_plural = "Reviews"
         
     def __unicode__(self):
-        return self.rating    
+        return self.rating
 

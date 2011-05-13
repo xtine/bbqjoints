@@ -3,6 +3,8 @@ from django.shortcuts import get_object_or_404, render_to_response
 
 from django.template import RequestContext
 
+import datetime
+
 def index(request):
     list_of_states = States.objects.all().order_by('name')
     context = RequestContext(request)
@@ -44,12 +46,16 @@ def review(request, joint_id):
         # If User already has review, grab primary key for update
         try:
             user_review = Reviews.objects.get(user=request.user.id, joint=joint_id)
-            user_pk = user_review.id
+            user_pk = request.user.id
+            print user_pk
+            user_created = user_review.created
         except:
             user_pk = None
+            user_created = datetime.datetime.now()
     except Joints.DoesNotExist:
         raise Http404
     else:   
-        Reviews(pk=user_pk, joint_id=joint_id, user_id=request.user.id, rating=p['rating'], review=p['review']).save()
+        Reviews(pk=user_pk, joint_id=joint_id, user_id=request.user.id, rating=p['rating'], review=p['review'], created = user_created, updated = datetime.datetime.now()).save()
+        # Reviews(pk=user_pk, joint_id=joint_id, user_id=request.user.id, rating=p['rating'], review=p['review']).save()
         context = RequestContext(request)
         return render_to_response('joint.html', {'joint': j, 'state': s, 'request': p}, context_instance=RequestContext(request))
