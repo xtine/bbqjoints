@@ -158,6 +158,8 @@ class Reviews(models.Model):
     joint = models.ForeignKey(Joints)
     review = models.TextField(blank=True)
     rating = models.FloatField(null=True, blank=True)
+    created = models.DateTimeField()
+    updated = models.DateTimeField()
     class Meta:
         ordering = ['joint']
         verbose_name_plural = "Reviews"
