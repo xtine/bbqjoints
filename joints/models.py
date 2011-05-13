@@ -52,6 +52,8 @@ class AuthUser(models.Model):
     date_joined = models.DateTimeField()
     class Meta:
         db_table = u'auth_user'
+    def __unicode__(self):
+        return self.username
 
 class AuthUserGroups(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -156,5 +158,10 @@ class Reviews(models.Model):
     joint = models.ForeignKey(Joints)
     review = models.TextField(blank=True)
     rating = models.FloatField(null=True, blank=True)
-    
+    class Meta:
+        ordering = ['joint']
+        verbose_name_plural = "Reviews"
+        
+    def __unicode__(self):
+        return self.rating    
 
