@@ -7,9 +7,9 @@
 	{% block content %}	
 	{% if joints %}
 	
-	<ul>
+	<ul id="joints">
 		{% for joint in joints %}
-		<li><a href="/joint/{{joint.id}}/{{joint.name|dashreplace:" "|urlencode}}">{{ joint.name }}</a><br/>
+		<li><a href="/joint/{{joint.id}}/{{joint.name|slugify}}">{{ joint.name }}</a><br/>
 			{{ joint.address }}, {{ joint.city }} {{ joint.state }}
 			</li>
 		{% endfor %}

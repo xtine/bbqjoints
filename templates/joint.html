@@ -10,21 +10,9 @@
 	{{ joint.city }}, {{ joint.state }}<br/>
 	{{ joint.phone }}<br/>
 	<a href="{{ joint.url }}">{{ joint.url }}</a><br/>
-	<br/>
+    <br/>
 	{% if joint.notes %}
     {{ joint.notes|safe }}
-    {% endif %}
-    
-    {% if reviews %}
-    <h4>Ratings and Reviews</h4>
-    {% for review in reviews %}
-    {{review.user.username}} rates:<br/>
-    {{review.rating}}<br/>
-    {{review.review}}<br/>
-    <br/>
-    {% endfor %}
-    <br/>
-    <br/>
     {% endif %}
     
     {% if user.is_authenticated %}
@@ -36,19 +24,40 @@
     {% else %}
     
     {% if user_review %}
-    <strong><em>Update Your Review:</em></strong>
+    <h3>Update Your Review:</h3>
     <form action="/joint/{{joint.id}}/review/" method="post">
         {% csrf_token %}
-        Rating: <input type="text" name="rating" id="rating" value="{{user_review.rating}}"><br/>
+                
+        Rating:
+        1 <input id="rating" name="rating" type="radio" value="1" {% if user_review.rating == 1 %} checked="checked" {% endif %}/>
+        1.5 <input id="rating" name="rating" type="radio" value="1.5" {% if user_review.rating == 1.5 %} checked="checked" {% endif %}/>
+        2 <input id="rating" name="rating" type="radio" value="2" {% if user_review.rating == 2 %} checked="checked" {% endif %}/>
+        2.5 <input id="rating" name="rating" type="radio" value="2.5" {% if user_review.rating == 2.5 %} checked="checked" {% endif %}/>
+        3 <input id="rating" name="rating" type="radio" value="3" {% if user_review.rating == 3 %} checked="checked" {% endif %}/>
+        3.5<input id="rating" name="rating" type="radio" value="3.5" {% if user_review.rating == 3.5 %} checked="checked" {% endif %}/>
+        4 <input id="rating" name="rating" type="radio" value="4" {% if user_review.rating == 4 %} checked="checked" {% endif %}/>
+        4.5 <input id="rating" name="rating" type="radio" value="4.5" {% if user_review.rating == 4.5 %} checked="checked" {% endif %}/>
+        5 <input id="rating" name="rating" type="radio" value="5" {% if user_review.rating == 5 %} checked="checked" {% endif %}/>
+        <br/>
         Review: <textarea name="review" id="review" cols="50" rows="10">{{user_review.review}}</textarea>
         <br/>
         <input type="submit" value="Submit" />
     </form>
     {% else %}
-    <strong><em>Write a Review:</em></strong>
+    <h3>Write a Review:</h3>
     <form action="/joint/{{joint.id}}/review/" method="post">
         {% csrf_token %}
-        Rating: <input type="text" name="rating" id="rating"><br/>
+        Rating:
+        1 <input id="rating" name="rating" type="radio" value="1"/>
+        1.5 <input id="rating" name="rating" type="radio" value="1.5"/>
+        2 <input id="rating" name="rating" type="radio" value="2"/>
+        2.5 <input id="rating" name="rating" type="radio" value="2.5"/>
+        3 <input id="rating" name="rating" type="radio" value="3"/>
+        3.5<input id="rating" name="rating" type="radio" value="3.5"/>
+        4 <input id="rating" name="rating" type="radio" value="4"/>
+        4.5 <input id="rating" name="rating" type="radio" value="4.5"/>
+        5 <input id="rating" name="rating" type="radio" value="5"/>
+        <br/>
         Review: <textarea name="review" id="review" cols="50" rows="10"></textarea>
         <br/>
         <input type="submit" value="Submit" />
@@ -56,6 +65,20 @@
     {% endif %}
     {% endif %}
     
+    {% endif %}
+    
+    {% if reviews %}
+    
+    <br/>
+    <h3>Reviews</h3>
+    {% for review in reviews %}
+    {{review.user.username}} says...<br/>
+    {{review.review}}<br/>
+    {{review.user.username}} rates this joint {{review.rating}}<br/>
+    <br/>
+    {% endfor %}
+    <br/>
+    <br/>
     {% endif %}
 
 	
