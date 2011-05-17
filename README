@@ -1,1 +1,5 @@
-This is the Django project for Kevin's BBQ Joints.
+Kevin's BBQ Joints
+===================
+
+A directory listing of BBQ Joints, written in the Django web framework.
+Users can register and login to review and rate particular joints.
