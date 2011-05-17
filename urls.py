@@ -15,8 +15,6 @@ urlpatterns += patterns('',
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),
     (r'^user/', include('registration.urls')),
-    (r'^media/(?P<path>.*)$', 'django.views.static.serve',
-            {'document_root': '/Users/xtine/django/bbq/media/', 'show_indexes': True}),
 )
 
 if settings.LOCAL_MEDIA:
