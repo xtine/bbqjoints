@@ -6,6 +6,8 @@ from django.template import RequestContext
 from joints.models import Joints, States, Reviews
 
 import datetime
+from django.utils.html import strip_tags
+
 
 def index(request):
     list_of_states = States.objects.all().order_by('name')
@@ -48,8 +50,9 @@ def review(request, joint_id):
     except Reviews.DoesNotExist:
         reviews = None
     try :
-        p = request.POST
-        request.POST['rating']
+        review = strip_tags(request.POST['review'])
+        rating = request.POST['rating']
+        
         try: # If User already has review, grab primary key for update
             user_review = Reviews.objects.get(user=request.user.id, joint=joint_id)
             user_pk = user_review.id
@@ -58,7 +61,7 @@ def review(request, joint_id):
             user_pk = None
             user_created = datetime.datetime.now()
             
-        Reviews(pk=user_pk, joint_id=joint_id, user_id=request.user.id, rating=p['rating'], review=p['review'], created = user_created, updated = datetime.datetime.now()).save()
+        Reviews(pk=user_pk, joint_id=joint_id, user_id=request.user.id, rating=rating, review=review, created = user_created, updated = datetime.datetime.now()).save()
 
         return HttpResponseRedirect(reverse('joints.views.joint', args=(j.id,)))        
             

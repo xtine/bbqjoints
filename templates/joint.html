@@ -46,7 +46,7 @@
     <h3>Reviews:</h3>
     {% for review in reviews %}
     <strong>{{review.user.username}}</strong> rates {{review.rating|floatformat}} flames and says...<br/>
-    {{review.review|safe}}<br/>
+    {{review.review|safe|linebreaks}}<br/>
     <br/>
     {% endfor %}
     <br/>
