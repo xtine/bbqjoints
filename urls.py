@@ -1,4 +1,5 @@
 from django.conf.urls.defaults import *
+from django.conf import settings
 
 from django.contrib import admin
 admin.autodiscover()
@@ -17,3 +18,8 @@ urlpatterns += patterns('',
     (r'^media/(?P<path>.*)$', 'django.views.static.serve',
             {'document_root': '/Users/xtine/django/bbq/media/', 'show_indexes': True}),
 )
+
+if settings.LOCAL_MEDIA:
+    urlpatterns +=patterns('',
+        (r'^media/(.+)', 'django.views.static.serve', { 'document_root' : settings.MEDIA_ROOT })
+    )
