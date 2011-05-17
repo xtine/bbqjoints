@@ -20,6 +20,7 @@
     <form action="/joint/{{joint.id}}/review/" method="post">
         {% csrf_token %}
         <h3>{% if user_review %}Update {% endif %}Rating:</h3>
+        {% if error_message %}<span class="error">You didn't rate the joint.</span>{% endif %}
         <input id="rating" name="rating" class="star {split:2}" type="radio" value="0.5" {% if user_review.rating == 0.5 %} checked="checked" {% endif %}/>
         <input id="rating" name="rating" class="star {split:2}" type="radio" value="1.0" {% if user_review.rating == 1 %} checked="checked" {% endif %}/>
         <input id="rating" name="rating" class="star {split:2}" type="radio" value="1.5" {% if user_review.rating == 1.5 %} checked="checked" {% endif %}/>
