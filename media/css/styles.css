@@ -196,6 +196,9 @@ ul#joints li {
 	padding: 0 0 10px 0;
 }
 
+.error {
+	color: red;
+}
 
 aside {
 	background: #d6d3ca;

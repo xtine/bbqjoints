@@ -1,7 +1,9 @@
-from joints.models import Joints, States, Reviews
 from django.shortcuts import get_object_or_404, render_to_response
-
+from django.http import HttpResponseRedirect, HttpResponse
+from django.core.urlresolvers import reverse
 from django.template import RequestContext
+
+from joints.models import Joints, States, Reviews
 
 import datetime
 
@@ -39,22 +41,33 @@ def joint(request, joint_id):
     return render_to_response('joint.html', {'joint': j, 'state': s, 'reviews': reviews, 'user_review':user_review }, context_instance=RequestContext(request))
     
 def review(request, joint_id):
+    j = get_object_or_404(Joints, pk=joint_id)
+    s = get_object_or_404(States, state_abbr = j.state)
     try:
-        j = Joints.objects.get(pk=joint_id)
-        s = States.objects.get(state_abbr=j.state)
+        reviews = Reviews.objects.filter(joint=joint_id)
+    except Reviews.DoesNotExist:
+        reviews = None
+    try :
         p = request.POST
-        # If User already has review, grab primary key for update
-        try:
+        request.POST['rating']
+        try: # If User already has review, grab primary key for update
             user_review = Reviews.objects.get(user=request.user.id, joint=joint_id)
             user_pk = user_review.id
             user_created = user_review.created
-        except:
+        except: # Otherwise create a new entry
             user_pk = None
             user_created = datetime.datetime.now()
-    except Joints.DoesNotExist:
-        raise Http404
-    else:   
+            
         Reviews(pk=user_pk, joint_id=joint_id, user_id=request.user.id, rating=p['rating'], review=p['review'], created = user_created, updated = datetime.datetime.now()).save()
-        # Reviews(pk=user_pk, joint_id=joint_id, user_id=request.user.id, rating=p['rating'], review=p['review']).save()
-        context = RequestContext(request)
-        return render_to_response('joint.html', {'joint': j, 'state': s, 'request': p}, context_instance=RequestContext(request))
+
+        return HttpResponseRedirect(reverse('joints.views.joint', args=(j.id,)))        
+            
+    except:
+        return render_to_response('joint.html', {
+            'joint': j,
+            'state' : s,
+            'reviews': reviews,
+            'error_message': "You didn't rate the joint.",
+        }, context_instance=RequestContext(request))   
+        
+

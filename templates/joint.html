@@ -17,12 +17,6 @@
     
     {% if user.is_authenticated %}
     
-    {% if request %}
-    Your Rating: {{request.rating}}<br/>
-    Your Review: {{request.review}}
-
-    {% else %}
-    
     {% if user_review %}
     <h3>Update Your Review:</h3>
     <form action="/joint/{{joint.id}}/review/" method="post">
@@ -44,10 +38,11 @@
         <input type="submit" value="Submit" />
     </form>
     {% else %}
-    <h3>Write a Review:</h3>
+    
     <form action="/joint/{{joint.id}}/review/" method="post">
         {% csrf_token %}
-        Rating:
+        <h3>Rate:</h3>
+        {% if error_message %}<span class="error">{{ error_message }}</span>{% endif %}
         1 <input id="rating" name="rating" type="radio" value="1"/>
         1.5 <input id="rating" name="rating" type="radio" value="1.5"/>
         2 <input id="rating" name="rating" type="radio" value="2"/>
@@ -57,12 +52,11 @@
         4 <input id="rating" name="rating" type="radio" value="4"/>
         4.5 <input id="rating" name="rating" type="radio" value="4.5"/>
         5 <input id="rating" name="rating" type="radio" value="5"/>
-        <br/>
-        Review: <textarea name="review" id="review" cols="50" rows="10"></textarea>
+        <h3>Review:</h3>
+        <textarea name="review" id="review" cols="50" rows="10"></textarea>
         <br/>
         <input type="submit" value="Submit" />
     </form>
-    {% endif %}
     {% endif %}
     
     {% endif %}
