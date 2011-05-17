@@ -43,11 +43,10 @@
     {% if reviews %}
     
     <br/>
-    <h3>Reviews</h3>
+    <h3>Reviews:</h3>
     {% for review in reviews %}
-    {{review.user.username}} says...<br/>
-    {{review.review}}<br/>
-    {{review.user.username}} rates this joint {{review.rating}}<br/>
+    <strong>{{review.user.username}}</strong> rates {{review.rating|floatformat}} flames and says...<br/>
+    {{review.review|safe}}<br/>
     <br/>
     {% endfor %}
     <br/>
