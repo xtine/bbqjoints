@@ -45,23 +45,42 @@ def joint(request, joint_id):
 def review(request, joint_id):
     j = get_object_or_404(Joints, pk=joint_id)
     s = get_object_or_404(States, state_abbr = j.state)
+    
     try:
         reviews = Reviews.objects.filter(joint=joint_id)
     except Reviews.DoesNotExist:
         reviews = None
+        
+    try:
+        user_review = Reviews.objects.get(user=request.user.id, joint=joint_id)
+    except Reviews.DoesNotExist:
+        user_review = None
+        
     try :
         review = strip_tags(request.POST['review'])
         rating = request.POST['rating']
         
-        try: # If User already has review, grab primary key for update
-            user_review = Reviews.objects.get(user=request.user.id, joint=joint_id)
-            user_pk = user_review.id
-            user_created = user_review.created
-        except: # Otherwise create a new entry
-            user_pk = None
-            user_created = datetime.datetime.now()
+        if review:
+        
+            try: # If User already has review, grab primary key for update
+                user_review = Reviews.objects.get(user=request.user.id, joint=joint_id)
+                user_pk = user_review.id
+                user_created = user_review.created
+            except: # Otherwise create a new entry
+                user_pk = None
+                user_created = datetime.datetime.now()
             
-        Reviews(pk=user_pk, joint_id=joint_id, user_id=request.user.id, rating=rating, review=review, created = user_created, updated = datetime.datetime.now()).save()
+            Reviews(pk=user_pk, joint_id=joint_id, user_id=request.user.id, rating=rating, review=review, created = user_created, updated = datetime.datetime.now()).save()
+            
+        else:
+            return render_to_response('joint.html', {
+                'joint': j,
+                'state' : s,
+                'reviews': reviews,
+                'user_review': user_review,
+                'error_message': "Can't submit without a review.",
+            }, context_instance=RequestContext(request))
+            
 
         return HttpResponseRedirect(reverse('joints.views.joint', args=(j.id,)))        
             
@@ -70,7 +89,7 @@ def review(request, joint_id):
             'joint': j,
             'state' : s,
             'reviews': reviews,
-            'error_message': "You didn't rate the joint.",
-        }, context_instance=RequestContext(request))   
-        
+            'error_message': "Can't submit without a rating.",
+        }, context_instance=RequestContext(request))
+
 
