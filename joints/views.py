@@ -67,11 +67,11 @@ def review(request, joint_id):
                 user_pk = user_review.id
                 user_created = user_review.created
             except: # Otherwise create a new entry
-                user_pk = None
+                user_pk = False
                 user_created = datetime.datetime.now()
             
-            Reviews(pk=user_pk, joint_id=joint_id, user_id=request.user.id, rating=rating, review=review, created = user_created, updated = datetime.datetime.now()).save()
-            
+            Reviews(pk=user_pk, joint_id=joint_id, user_id=request.user.id, rating=rating, review=review, created = user_created).save()
+
         else:
             return render_to_response('joint.html', {
                 'joint': j,
@@ -80,10 +80,9 @@ def review(request, joint_id):
                 'user_review': user_review,
                 'error_message': "Can't submit without a review.",
             }, context_instance=RequestContext(request))
-            
 
-        return HttpResponseRedirect(reverse('joints.views.joint', args=(j.id,)))        
-            
+        return HttpResponseRedirect(reverse('joints.views.joint', args=(j.id,)))
+
     except:
         return render_to_response('joint.html', {
             'joint': j,

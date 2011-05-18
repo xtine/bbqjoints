@@ -158,12 +158,13 @@ class Reviews(models.Model):
     joint = models.ForeignKey(Joints)
     review = models.TextField(blank=True)
     rating = models.FloatField(null=True, blank=True)
-    created = models.DateTimeField()
-    updated = models.DateTimeField()
+    created = models.DateTimeField(default=datetime.datetime.now)
+    modified = models.DateTimeField(default=datetime.datetime.now)
     class Meta:
-        ordering = ['updated']
+        db_table = u'reviews'
+        ordering = ['modified']
         verbose_name_plural = "Reviews"
         
     def __unicode__(self):
-        return self.rating
+        return self.review
 
