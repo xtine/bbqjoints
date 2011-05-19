@@ -4,7 +4,7 @@ from joints.models import Reviews
 from django.contrib import admin
 
 class JointsAdmin(admin.ModelAdmin):
-    list_display = ('name', 'address', 'city', 'state')
+    list_display = ('name', 'address', 'city', 'state', 'zip')
 admin.site.register(Joints, JointsAdmin)
 
 class SearchLogsAdmin(admin.ModelAdmin):
@@ -12,5 +12,5 @@ class SearchLogsAdmin(admin.ModelAdmin):
 admin.site.register(SearchLogs, SearchLogsAdmin)
 
 class ReviewsAdmin(admin.ModelAdmin):
-    list_display = ('review', 'rating', 'joint', 'user', 'modified', 'created')
+    list_display = ('review', 'rating', 'joint', 'user', 'modified', 'created', 'visible')
 admin.site.register(Reviews, ReviewsAdmin)

@@ -31,7 +31,7 @@ def joint(request, joint_id):
         raise Http404
     # Get reviews
     try:
-        reviews = Reviews.objects.filter(joint=joint_id)
+        reviews = Reviews.objects.filter(joint=joint_id, visible=True)
     except Reviews.DoesNotExist:
         reviews = None
     # Check if User has written a review already
@@ -69,8 +69,6 @@ def review(request, joint_id):
             except: # Otherwise create a new entry
                 user_pk = None
                 user_created = datetime.datetime.now()
-                
-            print "pk: ", user_pk
             
             Reviews(pk=user_pk, joint_id=joint_id, user_id=request.user.id, rating=rating, review=review, created = user_created).save()
 

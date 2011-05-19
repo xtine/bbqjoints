@@ -17,6 +17,8 @@
     
     {% if user.is_authenticated %}
     
+    {% if user_review.visible or not user_review %}
+    
     <form action="/joint/{{joint.id}}/review/" method="post">
         {% csrf_token %}
         <h3>{% if user_review %}Update {% endif %}Rating:</h3>
@@ -37,6 +39,12 @@
         {% if error_message %}<span class="error">{{ error_message }}</span><br/>{% endif %}
         <input type="submit" value="Submit" />
     </form>
+    
+    {% else %}
+    
+    <p><em>Sorry, your review is currently held under moderation.</em></p>
+    
+    {% endif %}
     
     {% endif %}
     
