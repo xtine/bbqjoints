@@ -67,8 +67,10 @@ def review(request, joint_id):
                 user_pk = user_review.id
                 user_created = user_review.created
             except: # Otherwise create a new entry
-                user_pk = False
+                user_pk = None
                 user_created = datetime.datetime.now()
+                
+            print "pk: ", user_pk
             
             Reviews(pk=user_pk, joint_id=joint_id, user_id=request.user.id, rating=rating, review=review, created = user_created).save()
 
