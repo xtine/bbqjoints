@@ -33,6 +33,7 @@
         <input id="rating" name="rating" class="star {split:2}" type="radio" value="4.5" {% if user_review.rating == 4.5 %} checked="checked" {% endif %}/>
         <input id="rating" name="rating" class="star {split:2}" type="radio" value="5.0" {% if user_review.rating == 5 %} checked="checked" {% endif %}/>
         <br/>
+        <br/>
         <h3>{% if user_review %}Update {% endif %}Review:</h3>
         <textarea name="review" id="review" cols="50" rows="10">{{user_review.review}}</textarea>
         <br/>

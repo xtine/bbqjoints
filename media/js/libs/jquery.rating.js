@@ -354,7 +354,7 @@
 			
 			// Width of star image in case the plugin can't work it out. This can happen if
 			// the jQuery.dimensions plugin is not available OR the image is hidden at installation
-			starWidth: 16//,
+			starWidth: 17//,
 			
 			//NB.: These don't need to be pre-defined (can be undefined/null) so let's save some code!
 			//half:     false,         // just a shortcut to control.split = 2
