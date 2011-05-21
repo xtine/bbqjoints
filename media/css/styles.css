@@ -4,91 +4,80 @@
 	Author: Christine Cheung
 */
 
-/*  HTML5 ✰ Boilerplate  */
+/* HTML5 ✰ Boilerplate */
 
-html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
 small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, figcaption, figure,  footer, header, hgroup, 
-menu, nav, section, summary, time, mark, audio, video {
-  margin:0;
-  padding:0;
-  border:0;
-  outline:0;
-  font-size:100%;
-  vertical-align:baseline;
-  background:transparent;
-}                  
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { 
-    display:block;
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
-nav ul { list-style:none; }
-blockquote, q { quotes:none; }
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+blockquote, q { quotes: none; }
 blockquote:before, blockquote:after,
-q:before, q:after { content:''; content:none; }
-a { margin:0; padding:0; font-size:100%; vertical-align:baseline; background:transparent; }
-ins { background-color:#ff9; color:#000; text-decoration:none; }
-mark { background-color:#ff9; color:#000; font-style:italic; font-weight:bold; }
+q:before, q:after { content: ""; content: none; }
+ins { background-color: #ff9; color: #000; text-decoration: none; }
+mark { background-color: #ff9; color: #000; font-style: italic; font-weight: bold; }
 del { text-decoration: line-through; }
-abbr[title], dfn[title] { border-bottom:1px dotted; cursor:help; }
-table { border-collapse:collapse; border-spacing:0; }
-hr { display:block; height:1px; border:0; border-top:1px solid #ccc; margin:1em 0; padding:0; }
-input, select { vertical-align:middle; }
+abbr[title], dfn[title] { border-bottom: 1px dotted; cursor: help; }
+table { border-collapse: collapse; border-spacing: 0; }
+hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
+input, select { vertical-align: middle; }
 
-
-body { font:13px/1.231 sans-serif; *font-size:small; } 
+body { font:13px/1.231 sans-serif; *font-size:small; }
 select, input, textarea, button { font:99% sans-serif; }
 pre, code, kbd, samp { font-family: monospace, sans-serif; }
 
-body, select, input, textarea {   color: #444; }
-h1,h2,h3,h4,h5,h6 { font-weight: bold; }
 html { overflow-y: scroll; }
-
 a:hover, a:active { outline: none; }
-
-ul, ol { margin-left: 1.8em; }
+ul, ol { margin-left: 2em; }
 ol { list-style-type: decimal; }
-
-nav ul, nav li { margin: 0; } 
+nav ul, nav li { margin: 0; list-style:none; list-style-image: none; }
 small { font-size: 85%; }
 strong, th { font-weight: bold; }
-td, td img { vertical-align: top; } 
-sub { vertical-align: sub; font-size: smaller; }
-sup { vertical-align: super; font-size: smaller; }
-pre {  padding: 15px;  white-space: pre;  white-space: pre-wrap;  white-space: pre-line;  word-wrap: break-word; }
+td { vertical-align: top; }
+sub, sup { font-size: 75%; line-height: 0; position: relative; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 15px; }
 textarea { overflow: auto; } 
 .ie6 legend, .ie7 legend { margin-left: -7px; } 
 input[type="radio"] { vertical-align: text-bottom; }
 input[type="checkbox"] { vertical-align: bottom; }
 .ie7 input[type="checkbox"] { vertical-align: baseline; }
 .ie6 input { vertical-align: text-bottom; }
-label, input[type=button], input[type=submit], button { cursor: pointer; }
+label, input[type="button"], input[type="submit"], input[type="image"], button { cursor: pointer; }
 button, input, select, textarea { margin: 0; }
 input:valid, textarea:valid   {  }
-input:invalid, textarea:invalid { border-radius: 1px;  -moz-box-shadow: 0px 0px 5px red; -webkit-box-shadow: 0px 0px 5px red;  box-shadow: 0px 0px 5px red; }
-.no-boxshadow input:invalid, 
-.no-boxshadow textarea:invalid { background-color: #f0dddd; }
-
+input:invalid, textarea:invalid { border-radius: 1px; -moz-box-shadow: 0px 0px 5px red; -webkit-box-shadow: 0px 0px 5px red; box-shadow: 0px 0px 5px red; }
+.no-boxshadow input:invalid, .no-boxshadow textarea:invalid { background-color: #f0dddd; }
 ::-moz-selection{ background: #FF5E99; color:#fff; text-shadow: none; }
-::selection { background:#FF5E99; color:#fff; text-shadow: none; } 
-a:link { -webkit-tap-highlight-color: #FF5E99; } 
-
+::selection { background:#FF5E99; color:#fff; text-shadow: none; }
+a:link { -webkit-tap-highlight-color: #FF5E99; }
 button {  width: auto; overflow: visible; }
 .ie7 img { -ms-interpolation-mode: bicubic; }
 
-.ir { display: block; text-indent: -999em; overflow: hidden; background-repeat: no-repeat; text-align: left; direction: ltr; }
-.hidden { display: none; visibility: hidden; } 
-.visuallyhidden { position: absolute !important; clip: rect(1px 1px 1px 1px);  clip: rect(1px, 1px, 1px, 1px); }
-.invisible { visibility: hidden; }
-.clearfix:before, .clearfix:after {  content: "\0020"; display: block; height: 0; visibility: hidden;	 } 
-.clearfix:after { clear: both; }
-.clearfix { zoom: 1; }
 
 html {	background: #bfbcb4 url(../img/bg.png); }
 
 body {
-	font: .85em/1.5em "Helvetica Neue", Helvetica, Arial, sans-serif; 
+	font: .85em/1.5em "Helvetica Neue", Helvetica, Arial, sans-serif;
 	background: #d6d3ca;
 	width: 960px;
 	margin: 0 auto;
@@ -100,10 +89,12 @@ h2 {
 	text-transform: uppercase;
 	color: #000;
 }
-
 h3 {
-	font-weight: bold;
-	font-size: 1.5em;
+	font: bold 1.5em Arial, Helvetica;
+	margin: 0 0 5px 0;
+}
+h4 {
+	font: bold 1.2em Arial, Helvetica;
 	margin: 0 0 5px 0;
 }
 
@@ -131,7 +122,8 @@ header h1 a {
 	display: block;
 }
 
-#userWelcome {
+/* User Login */
+#userBar {
 	position: absolute;
 	right: 0;
 	top: 0;
@@ -139,6 +131,7 @@ header h1 a {
 	text-align: right;
 }
 
+/* Top Navigation */
 nav {
 	background: #951a1a;
 	height: 40px;
@@ -157,6 +150,7 @@ nav ul li a {
 	text-decoration: none;
 }
 
+/* Content Header */
 section#content {
 	width: 756px;
 	padding: 10px 10px 15px 10px;
@@ -173,6 +167,7 @@ section header {
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 }
+/* Content Main */
 section article {
 	background: #fbfaf7;
 	padding: 15px 20px;
@@ -185,6 +180,7 @@ section article {
 	overflow: auto;
 }
 
+/* BBQ Joints Listing by State */
 ul#stateList li {
 	font-size: 1.3em;
 	width: 160px;
@@ -192,14 +188,75 @@ ul#stateList li {
 	float: left;
 }
 
+/* State Page Listing of Joints */
 ul#joints li {
 	padding: 0 0 10px 0;
 }
 
+/* Joint Info Page */
+#jointInfo {
+	width: 400px;
+	margin: 0 0 15px 0;
+	float: left;
+}
+
+#map {
+	width: 300px;
+	height: 300px;
+	margin: -20px 0 15px 0;
+	float: right;
+}
+
+#jointRate {
+	width: 510px;
+	border-top: 1px solid #ddd;
+	padding: 10px 0;
+	clear: both;
+}
+.rate {
+	width: 100px;
+	float: left;
+	clear: both;
+}
+.flames {
+	float: left;
+}
+.flameText {
+	font-style: italic;
+	font-size: 0.9em;
+	margin: 2px 0 0 20px;
+	float: left;
+}
+.review {
+	width: 100px;
+	margin: 10px 0 0 0;
+	float: left;
+	clear: both;
+}
+.reviewBox {
+	width: 400px;
+	height: 200px;
+	margin: 15px 0 0 0;
+	float: left;
+}
+#jointRate .submit {
+	margin: 10px 0;
+	float: right;
+	clear: both;
+}
+
+#reviews {
+	padding: 20px 0 0 0;
+	clear: both;
+}
+
+
+/* Rate or Review Error */
 .error {
 	color: red;
 }
 
+/* Right Side Ad Space */
 aside {
 	background: #d6d3ca;
 	color: #888;
@@ -228,14 +285,21 @@ footer ul li a {
 	text-decoration: none;
 }
 
-/* jQuery.Rating Plugin CSS - http://www.fyneworks.com/jquery/star-rating/ */
-div.star-rating{float:left;width:17px;height:23px;text-indent:-999em;cursor:pointer;display:block;background:transparent;overflow:hidden;}
+/* Flames */
+div.star-rating{float:left;width:19px;height:23px;text-indent:-999em;cursor:pointer;display:block;background:transparent;overflow:hidden;}
 div.star-rating,div.star-rating a{background:url(/media/img/flames.png) no-repeat 0 0px;}
 div.star-rating a{display:block;width:17px;height:100%;background-position:0 0px;border:0;}
 div.star-rating-on a{background-position:0 -23px!important;}
 div.star-rating-hover a{background-position:0 -46px;}
-/* Read Only CSS */
 div.star-rating-readonly a{cursor:default !important;}
-/* Partial Star CSS */
 div.star-rating{background:transparent!important;overflow:hidden!important;}
-/* END jQuery.Rating Plugin CSS */
+
+.ir { display: block; text-indent: -999em; overflow: hidden; background-repeat: no-repeat; text-align: left; direction: ltr; }
+.hidden { display: none; visibility: hidden; }
+.visuallyhidden { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus { clip: auto; height: auto; margin: 0; overflow: visible; position: static; width: auto; }
+.invisible { visibility: hidden; }
+.clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }

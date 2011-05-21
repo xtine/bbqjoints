@@ -11,7 +11,7 @@
 
 	<title>{% block title %}Kevin's BBQ Joints{% endblock %}</title>
 	<meta name="description" content="Kevin's BBQ Joints">
-	<meta name="author" content="Christine Cheung">
+	<meta name="author" content="Kevin Kelly, Christine Cheung">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="/media/favicon.ico">
@@ -19,13 +19,16 @@
 
 	<link rel="stylesheet" href="/media/css/styles.css">
 	
+    <script src="/media/js/libs/modernizr-1.7.min.js"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+	
 </head>
 
 <body>
 
 	<header>
 		<h1><a href="/">Kevin's BBQ Joints</a></h1>
-		<div id="userWelcome">
+		<div id="userBar">
 		{% if user.is_authenticated %}
 		You are logged in as: {{ user.username }} <br/>(<a href="/user/logout">Logout</a>)
 		{% else %}
@@ -76,9 +79,15 @@
 		</ul>
 	</footer>
 
-	<script src="/media/js/libs/jquery-1.4.2.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
+    <script>window.jQuery || document.write('<script src="/media/js/libs/jquery-1.5.1.min.js">\x3C/script>')</script>
 	<script src="/media/js/libs/jquery.rating.js"></script>
 	<script src="/media/js/libs/jquery.MetaData.js"></script>
+
+    <!--[if lt IE 7 ]>
+    <script src="/media/js/libs/dd_belatedpng.js"></script>
+    <script>DD_belatedPNG.fix('img, .png_bg');</script>
+    <![endif]-->
 
 </body>
 

@@ -5,61 +5,96 @@
 
 	{% block content %}
 	
-	<h3>{{ joint.name }}</h3>
-	{{ joint.address }}<br/>
-	{{ joint.city }}, {{ joint.state }}<br/>
-	{{ joint.phone }}<br/>
-	<a href="{{ joint.url }}">{{ joint.url }}</a><br/>
+	<div id="jointInfo">
+    	<h3>{{ joint.name }}</h3>
+    	{{ joint.address }}<br/>
+    	{{ joint.city }}, {{ joint.state }} {{ joint.zip }}<br/>
+    	{{ joint.phone }}<br/>
+    	<a href="{{ joint.url }}">{{ joint.url }}</a><br/>
+    	{% if joint.chain %}it's a chain<br/>{% endif %}
+    	{% if joint.notes %}
+        {{ joint.notes|safe }}
+        {% endif %}
+    </div>
+    	
     <br/>
-	{% if joint.notes %}
-    {{ joint.notes|safe }}
-    {% endif %}
+    <div id="map"></div>
+
+    <script type="text/javascript">
+        var jointLocation = new google.maps.LatLng({{joint.lat}}, {{joint.lon}});
+        var myOptions = {
+            zoom: 13,
+            center: jointLocation,
+            scrollWheel: false,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map"), myOptions);
+        var marker = new google.maps.Marker({
+            position: jointLocation,
+            map: map
+        });
+    </script>
     
-    {% if user.is_authenticated %}
+    <div id="jointRate">
     
-    {% if user_review.visible or not user_review %}
+        {% if user.is_authenticated %}
     
-    <form action="/joint/{{joint.id}}/review/" method="post">
-        {% csrf_token %}
-        <h3>{% if user_review %}Update {% endif %}Rating:</h3>
-        <input id="rating" name="rating" class="star {split:2}" type="radio" value="0.5" {% if user_review.rating == 0.5 %} checked="checked" {% endif %}/>
-        <input id="rating" name="rating" class="star {split:2}" type="radio" value="1.0" {% if user_review.rating == 1 %} checked="checked" {% endif %}/>
-        <input id="rating" name="rating" class="star {split:2}" type="radio" value="1.5" {% if user_review.rating == 1.5 %} checked="checked" {% endif %}/>
-        <input id="rating" name="rating" class="star {split:2}" type="radio" value="2.0" {% if user_review.rating == 2 %} checked="checked" {% endif %}/>
-        <input id="rating" name="rating" class="star {split:2}" type="radio" value="2.5" {% if user_review.rating == 2.5 %} checked="checked" {% endif %}/>
-        <input id="rating" name="rating" class="star {split:2}" type="radio" value="3.0" {% if user_review.rating == 3 %} checked="checked" {% endif %}/>
-        <input id="rating" name="rating" class="star {split:2}" type="radio" value="3.5" {% if user_review.rating == 3.5 %} checked="checked" {% endif %}/>
-        <input id="rating" name="rating" class="star {split:2}" type="radio" value="4.0" {% if user_review.rating == 4 %} checked="checked" {% endif %}/>
-        <input id="rating" name="rating" class="star {split:2}" type="radio" value="4.5" {% if user_review.rating == 4.5 %} checked="checked" {% endif %}/>
-        <input id="rating" name="rating" class="star {split:2}" type="radio" value="5.0" {% if user_review.rating == 5 %} checked="checked" {% endif %}/>
-        <br/>
-        <br/>
-        <h3>{% if user_review %}Update {% endif %}Review:</h3>
-        <textarea name="review" id="review" cols="50" rows="10">{{user_review.review}}</textarea>
-        <br/>
-        {% if error_message %}<span class="error">{{ error_message }}</span><br/>{% endif %}
-        <input type="submit" value="Submit" />
-    </form>
+        {% if user_review.visible or not user_review %}
     
-    {% else %}
+        <form action="/joint/{{joint.id}}/review/" method="post">
+            {% csrf_token %}
+            <div class="rate">
+                <h4>{% if user_review %}Edit Your {% endif %}Rating</h4>
+            </div>
+            <div class="flames">
+                <input id="rating" name="rating" class="star {split:2}" type="radio" value="0.5" {% if user_review.rating == 0.5 %} checked="checked" {% endif %}/>
+                <input id="rating" name="rating" class="star {split:2}" type="radio" value="1.0" {% if user_review.rating == 1 %} checked="checked" {% endif %}/>
+                <input id="rating" name="rating" class="star {split:2}" type="radio" value="1.5" {% if user_review.rating == 1.5 %} checked="checked" {% endif %}/>
+                <input id="rating" name="rating" class="star {split:2}" type="radio" value="2.0" {% if user_review.rating == 2 %} checked="checked" {% endif %}/>
+                <input id="rating" name="rating" class="star {split:2}" type="radio" value="2.5" {% if user_review.rating == 2.5 %} checked="checked" {% endif %}/>
+                <input id="rating" name="rating" class="star {split:2}" type="radio" value="3.0" {% if user_review.rating == 3 %} checked="checked" {% endif %}/>
+                <input id="rating" name="rating" class="star {split:2}" type="radio" value="3.5" {% if user_review.rating == 3.5 %} checked="checked" {% endif %}/>
+                <input id="rating" name="rating" class="star {split:2}" type="radio" value="4.0" {% if user_review.rating == 4 %} checked="checked" {% endif %}/>
+                <input id="rating" name="rating" class="star {split:2}" type="radio" value="4.5" {% if user_review.rating == 4.5 %} checked="checked" {% endif %}/>
+                <input id="rating" name="rating" class="star {split:2}" type="radio" value="5.0" {% if user_review.rating == 5 %} checked="checked" {% endif %}/>
+            </div>
+            <div class="flameText">
+                (Roll over flames, and click to rate.)
+            </div>
+
+            <div class="review">
+                <h4>{% if user_review %}Edit Your {% endif %}Review</h4>
+            </div>
+            <textarea name="review" class="reviewBox">{{user_review.review}}</textarea>
+
+            {% if error_message %}<span class="error">{{ error_message }}</span><br/>{% endif %}
+            
+            <div class="submit">
+            <input type="submit" value="Post" />
+            </div>
+        </form>
     
-    <p><em>Sorry, your review is currently held under moderation.</em></p>
+        {% else %}
     
-    {% endif %}
+        <p><em>Sorry, your review is currently held under moderation.</em></p>
     
-    {% endif %}
+        {% endif %}
+    
+        {% endif %}
+
+    </div>
     
     {% if reviews %}
-    
-    <br/>
-    <h3>Reviews:</h3>
-    {% for review in reviews %}
-    <strong>{{review.user.username}}</strong> rates {{review.rating|floatformat}} flames and says...<br/>
-    {{review.review|safe|linebreaks}}<br/>
-    <br/>
-    {% endfor %}
-    <br/>
-    <br/>
+    <div id="reviews">
+        <h3>Reviews:</h3>
+        {% for review in reviews %}
+        <strong>{{review.user.username}}</strong> rates {{review.rating|floatformat}} flames and says...<br/>
+        {{review.review|safe|linebreaks}}<br/>
+        <br/>
+        {% endfor %}
+        <br/>
+        <br/>
+    </div>
     {% endif %}
 
 	
