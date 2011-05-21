@@ -208,10 +208,13 @@ ul#joints li {
 }
 
 #jointRate {
-	width: 510px;
+	width: 450px;
 	border-top: 1px solid #ddd;
 	padding: 10px 0;
 	clear: both;
+}
+#jointRate h3 {
+	padding: 0 0 10px 0;
 }
 .rate {
 	width: 100px;
@@ -234,10 +237,12 @@ ul#joints li {
 	clear: both;
 }
 .reviewBox {
-	width: 400px;
+	width: 440px;
 	height: 200px;
 	margin: 15px 0 0 0;
+	padding: 5px;
 	float: left;
+	clear: both;
 }
 #jointRate .submit {
 	margin: 10px 0;
