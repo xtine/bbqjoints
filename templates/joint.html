@@ -1,5 +1,6 @@
 
 {% extends "base.html" %}
+{% load joint_extras %}
 
 	{% block page_heading %} BBQ Joints > <a href="/joints/{{ state.state_abbr }}">{{ state.name }}</a></h2>{% endblock %}
 
@@ -77,6 +78,10 @@
     
         {% endif %}
     
+        {% else %}
+    
+		<p><a href="{%	url registration_register %}">Register</a> or <a href="/user/login">Login</a> to rate and review this Joint!</p>
+    
         {% endif %}
 
     </div>
@@ -87,7 +92,7 @@
         {% for review in reviews %}
         <strong>{{review.user.username}}</strong><br/>
         {{review.modified}}<br/>
-        {{review.rating|floatformat}} flames<br/>
+        <div class="flames f{{review.rating|floatformat|dashreplace:"."}}"></div>
         {{review.review|safe|linebreaks}}<br/>
         <br/>
         {% endfor %}

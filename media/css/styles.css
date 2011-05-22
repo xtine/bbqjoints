@@ -221,7 +221,7 @@ ul#joints li {
 	float: left;
 	clear: both;
 }
-.flames {
+#jointRate .flames {
 	float: left;
 }
 .flameText {
@@ -253,6 +253,37 @@ ul#joints li {
 #reviews {
 	padding: 20px 0 0 0;
 	clear: both;
+}
+#reviews .flames {
+	height: 23px;
+	background:url(/media/img/flames.png) 0 -23px;
+}
+#reviews f1 {
+	width: 17px;
+}
+#reviews f1-5 {
+	width: 25.5px;
+}
+#reviews f2 {
+	width: 34px;
+}
+#reviews f2-5 {
+	width: 42.5;
+}
+#revies f3 {
+	width: 51px;
+}
+#reviews .f3-5 {
+	width: 59.5px;
+}
+#reviews .f4 {
+	width: 68px;
+}
+#reviews .f4-5 {
+	width: 76.5px;
+}
+#reviews .f5 {
+	width: 85px;
 }
 
 
