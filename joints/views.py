@@ -5,7 +5,7 @@ from django.template import RequestContext
 
 from joints.models import Joints, States, Reviews
 
-import datetime
+import datetime, urllib
 from django.utils.html import strip_tags
 
 
@@ -13,7 +13,7 @@ def index(request):
     list_of_states = States.objects.all().order_by('name')
     context = RequestContext(request)
     return render_to_response('states_listing.html', {'list_of_states': list_of_states}, context_instance=context)
-    
+
 def state(request, state_abbr):
     try:
         j = Joints.objects.filter(state__state_abbr=state_abbr)
@@ -22,7 +22,34 @@ def state(request, state_abbr):
         raise Http404
     context = RequestContext(request)
     return render_to_response('state.html', {'joints': j, 'state': s}, context_instance=context)
-    
+
+def search(request):
+
+    try:
+        query = request.GET['q']
+
+        output = "csv"
+        location = urllib.quote_plus(query)
+        geocodeLookup = "http://maps.google.com/maps/geo?q=%s&output=%s" % (location, output)
+        geocodeLookup = urllib.urlopen(geocodeLookup).read()
+        geocode = geocodeLookup.split(',')
+
+        print geocode[2], ", ", geocode[3]
+
+        lat = geocode[2]
+        lon = geocode[3]
+
+        # Haversine Formula for nearest points
+        # Only show if the BBQ Joint is open
+        # TODO: Filter by Chain
+        j = Joints.objects.raw("SELECT id,  ( 3959 * acos( cos( radians(%s) ) * cos( radians( lat ) ) * cos( radians( lon ) - radians(%s) ) + sin( radians(%s) ) * sin( radians( lat ) ) ) ) AS distance FROM joints WHERE open = 1 HAVING distance < 50 ORDER BY distance LIMIT 0 , 11;" % (lat, lon, lat))
+
+    except:
+        query = ''
+
+    context = RequestContext(request)
+    return render_to_response('search_results.html', {'query' : query, 'joints': j, 'lat' : lat, 'lon' : lon}, context_instance=context)
+
 def joint(request, joint_id):
     try:
         j = Joints.objects.get(pk=joint_id)
