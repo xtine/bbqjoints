@@ -239,6 +239,11 @@ ul#joints li {
 	margin: 0 0 15px 0;
 	float: left;
 }
+.chain {
+	width: 48px;
+	height: 48px;
+	background: url(/media/img/sprites.png) -80px -40px no-repeat;
+}
 
 #map {
 	width: 350px;

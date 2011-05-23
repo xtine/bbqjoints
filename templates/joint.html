@@ -13,7 +13,7 @@
     	{{ joint.city }}, {{ joint.state }} {{ joint.zip }}<br/>
     	{% if joint.phone %}{{ joint.phone }}<br/>{% endif %}
     	{% if joint.url %}<a href="{{ joint.url }}">{{ joint.url }}</a><br/>{% endif %}
-    	{% if joint.chain %}it's a chain<br/>{% endif %}
+    	{% if joint.chain %}<div class="chain"></div>{% endif %}
     	{% if joint.notes %}
         {{ joint.notes|safe }}
         {% endif %}
