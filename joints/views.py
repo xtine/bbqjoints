@@ -25,38 +25,46 @@ def state(request, state_abbr):
 
 def search(request):
 
-    if request.GET['q'] == '':
+    try:
+        query = request.GET['q']
+        
+        if query == '':
+            error = "You have to enter a location to search for BBQ Joints."
+            context = RequestContext(request)
+            return render_to_response('search_results.html', {'error' : error}, context_instance=context)
+        else:
+
+            try:
+
+                output = "csv"
+                location = urllib.quote_plus(query)
+                geocodeLookup = "http://maps.google.com/maps/geo?q=%s&output=%s" % (location, output)
+                geocodeLookup = urllib.urlopen(geocodeLookup).read()
+                geocode = geocodeLookup.split(',')
+
+                print geocode[2], ", ", geocode[3]
+
+                lat = geocode[2]
+                lon = geocode[3]
+
+                # Haversine Formula for nearest points
+                # Only show if the BBQ Joint is open
+                # TODO: Filter by Chain
+                j = Joints.objects.raw("SELECT id,  ( 3959 * acos( cos( radians(%s) ) * cos( radians( lat ) ) * cos( radians( lon ) - radians(%s) ) + sin( radians(%s) ) * sin( radians( lat ) ) ) ) AS distance FROM joints WHERE open = 1 HAVING distance < 50 ORDER BY distance LIMIT 0 , 11;" % (lat, lon, lat))
+
+            except:
+                error = "The Search Function is not working right now, sorry."
+                context = RequestContext(request)
+                return render_to_response('search_results.html', {'error' : error}, context_instance=context)
+
+            context = RequestContext(request)
+            return render_to_response('search_results.html', {'query' : query, 'joints': j, 'lat' : lat, 'lon' : lon}, context_instance=context)
+    
+    except:
         error = "You have to enter a location to search for BBQ Joints."
         context = RequestContext(request)
         return render_to_response('search_results.html', {'error' : error}, context_instance=context)
-    else:
-
-        try:
-            query = request.GET['q']
-
-            output = "csv"
-            location = urllib.quote_plus(query)
-            geocodeLookup = "http://maps.google.com/maps/geo?q=%s&output=%s" % (location, output)
-            geocodeLookup = urllib.urlopen(geocodeLookup).read()
-            geocode = geocodeLookup.split(',')
-
-            print geocode[2], ", ", geocode[3]
-
-            lat = geocode[2]
-            lon = geocode[3]
-
-            # Haversine Formula for nearest points
-            # Only show if the BBQ Joint is open
-            # TODO: Filter by Chain
-            j = Joints.objects.raw("SELECT id,  ( 3959 * acos( cos( radians(%s) ) * cos( radians( lat ) ) * cos( radians( lon ) - radians(%s) ) + sin( radians(%s) ) * sin( radians( lat ) ) ) ) AS distance FROM joints WHERE open = 1 HAVING distance < 50 ORDER BY distance LIMIT 0 , 11;" % (lat, lon, lat))
-
-        except:
-            error = "The Search Function is not working right now, sorry."
-            context = RequestContext(request)
-            return render_to_response('search_results.html', {'error' : error}, context_instance=context)
-
-        context = RequestContext(request)
-        return render_to_response('search_results.html', {'query' : query, 'joints': j, 'lat' : lat, 'lon' : lon}, context_instance=context)
+        
 
 def joint(request, joint_id):
     try:
