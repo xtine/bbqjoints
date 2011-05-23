@@ -53,7 +53,7 @@
 	
 	<section id="search">
 	    <form action="/search/" method="GET">
-    	    <input type="text" name="q" {% if query %}placeholder="{{query}}"{% else %}"Street Address, City, State, or ZIP"{% endif %} />
+    	    <input type="text" name="q" placeholder={% if query %}"{{query}}"{% else %}"Street Address, City, State, or ZIP"{% endif %} />
     	    <input type="submit" value="Go" />
     	</form>
 	</section>
