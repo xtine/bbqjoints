@@ -2,12 +2,13 @@
 {% extends "base.html" %}
 {% load joint_extras %}
 
+    {% block title %} {{joint.name|safe}} {% endblock title %}
 	{% block page_heading %} BBQ Joints > <a href="/joints/{{ state.state_abbr }}">{{ state.name }}</a></h2>{% endblock %}
 
 	{% block content %}
 	
 	<div id="jointInfo">
-    	<h3>{{ joint.name }}</h3>
+    	<h3>{{ joint.name|safe }}</h3>
     	{{ joint.address }}<br/>
     	{{ joint.city }}, {{ joint.state }} {{ joint.zip }}<br/>
     	{{ joint.phone }}<br/>
@@ -19,22 +20,82 @@
     </div>
     	
     <div id="map"></div>
+    
+    <div id="directions">
+        
+        <h4>Driving Directions</h4>
+        
+        <div class="error"></div>
+        <label for="from">From:</label> <input type="text" id="from" placeholder="Enter your address here." />
+        <label for="to">To:</label> <input type="text" id="to" value="{{joint.address}}, {{joint.city}} {{joint.state}} {{joint.zip}}" />
+        
+        <input type="submit" value="Get Directions"  onsubmit="calcRoute();"/>
+        
+        <div id="panel"></div>
+        
+    </div>
 
     {% if joint.lon %}
 
     <script type="text/javascript">
-        var jointLocation = new google.maps.LatLng({{joint.lat}}, {{joint.lon}});
-        var jointOptions = {
-            zoom: 13,
-            center: jointLocation,
-            scrollwheel: false,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("map"), jointOptions);
-        var marker = new google.maps.Marker({
-            position: jointLocation,
-            map: map
+
+        var directionsDisplay;
+        var directionsService = new google.maps.DirectionsService();
+
+        function init() {
+            
+            directionsDisplay = new google.maps.DirectionsRenderer();
+            
+            var jointLocation = new google.maps.LatLng({{joint.lat}}, {{joint.lon}});
+        
+            var jointOptions = {
+                zoom: 13,
+                center: jointLocation,
+                scrollwheel: false,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+        
+            var map = new google.maps.Map(document.getElementById("map"), jointOptions);
+                
+            var marker = new google.maps.Marker({
+                position: jointLocation,
+                map: map
+            });
+        
+            directionsDisplay.setMap(map);
+            directionsDisplay.setPanel(document.getElementById("panel"));
+        }
+        
+        function calcRoute() {
+            var start = document.getElementById("from").value;
+            var end = document.getElementById("to").value;
+
+            var request = {
+                origin:start, 
+                destination:end,
+                travelMode: google.maps.DirectionsTravelMode.DRIVING
+            };
+          
+            directionsService.route(request, function(response, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                }
+                else {
+                    $(".error").html("Directions cannot be found.<br/>Please enter a valid location for your starting destination.");
+                }
+            });
+        }
+        
+        $(document).ready(function() {
+            init();
+
+            $("#directions input[type='submit']").click(function() {
+                $(".error").html('');
+                calcRoute();
+            });
+
         });
+        
     </script>
     
     {% endif %}
