@@ -162,10 +162,11 @@ section#search input[type="text"] {
 	padding: 0 5px;
 	width: 250px;
 	height: 35px;
-	-webkit-border-radius: 2px;
-	-moz-border-radius-: 2px;
-	border-radius: 2px;
 	border: none;
+}
+.ie8 section#search input[type="text"] {
+	padding: 10px 5px;
+	height: 15px;
 }
 section#search input[type="submit"] {
 	width: 80px;
@@ -177,6 +178,12 @@ section#search input[type="submit"] {
 section#search #filterChains {
 	margin: 20px 0 0 10px;
 	position: absolute;
+}
+.ie8 section#search input[type="checkbox"] {
+	padding: 17px 5px 0 0;
+}
+.ie8 section#search #filterChains {
+	margin-top: 0;
 }
 section#search span.filterChains {
 	color: #fff;
