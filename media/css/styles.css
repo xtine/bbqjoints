@@ -251,7 +251,7 @@ ul#joints li {
 }
 .flameText {
 	font-style: italic;
-	font-size: 0.9999px;
+	font-size: 0.9999em;
 	margin: 2px 0 0 20px;
 	float: left;
 }
@@ -283,19 +283,19 @@ ul#joints li {
 	height: 23px;
 	background:url(/media/img/flames.png) 0 -23px;
 }
-#reviews f1 {
+#reviews .f1 {
 	width: 17px;
 }
-#reviews f1-5 {
+#reviews .f1-5 {
 	width: 25.5px;
 }
-#reviews f2 {
+#reviews .f2 {
 	width: 34px;
 }
-#reviews f2-5 {
+#reviews .f2-5 {
 	width: 42.5;
 }
-#revies f3 {
+#reviews .f3 {
 	width: 51px;
 }
 #reviews .f3-5 {
