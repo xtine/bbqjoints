@@ -18,6 +18,7 @@ class Joints(models.Model):
     modified = models.DateTimeField(default=datetime.datetime.now)
     chain = models.BooleanField(null=False, blank=False)
     notes = models.TextField(blank=True)
+    open = models.BooleanField(default=True, blank=True)
     
     class Meta:
         db_table = u'joints'
