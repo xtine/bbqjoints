@@ -48,10 +48,8 @@ def search(request):
                 geocodeLookup = urllib.urlopen(geocodeLookup).read()
                 geocode = geocodeLookup.split(',')
 
-                print geocode[2], ", ", geocode[3]
-
                 lat = geocode[2]
-                lon = geocode[3]                
+                lon = geocode[3]
 
                 # Haversine Formula for nearest points
                 # Only show if the BBQ Joint is open
@@ -63,9 +61,15 @@ def search(request):
                 context = RequestContext(request)
                 return render_to_response('search_results.html', {'error' : error}, context_instance=context)
 
-            context = RequestContext(request)
-            return render_to_response('search_results.html', {'query' : query, 'joints': j, 'lat' : lat, 'lon' : lon, 'filterChains' : filterChains}, context_instance=context)
-    
+            # return if row count is greater than 0
+            if len(list(j)) != 0:
+                context = RequestContext(request)
+                return render_to_response('search_results.html', {'query' : query, 'joints': j, 'lat' : lat, 'lon' : lon, 'filterChains' : filterChains}, context_instance=context)
+            else:
+                error = "Sorry, no BBQ Joints were found."
+                context = RequestContext(request)
+                return render_to_response('search_results.html', {'error' : error}, context_instance=context)
+
     except:
         error = "You have to enter a location to search for BBQ Joints."
         context = RequestContext(request)
