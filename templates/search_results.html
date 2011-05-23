@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+	
+	{% block title %}Kevin's BBQ Joints - Search Results{% endblock %}
+	
+	{% block page_heading %}Search Results{% endblock %}
+	
+	{% block content %}
+
+    <div id="searchResults">
+
+    {% if query %}
+    
+        <p>BBQ Joints near: <em>{{query}}</em></p>
+        
+        <ol>
+        {% for joint in joints %}
+            <li>
+                <a href="/joint/{{joint.id}}/{{joint.name|slugify}}">{{joint.name}}</a><br/>
+                {{joint.address}}<br/>
+                {{joint.city}}, {{joint.state}} {{joint.zip}}<br/>
+                <em>{{joint.distance|floatformat:"2"}} miles away</em><br/>
+            </li>
+        {% endfor %}
+        </ol>
+
+    </div>
+    
+    <div id="map"></div>
+    
+    <script type="text/javascript">
+        var jointLocations = [
+            {% for joint in joints %}
+            ['<strong>{{joint.name}}</strong><br/>{{joint.address}}<br/>{{joint.city}} {{joint.zip}}', {{joint.lat}}, {{joint.lon}}]{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ];
+
+        var jointOptions = {
+            zoom: 13,
+            center: new google.maps.LatLng({{lat}}, {{lon}}),
+            scrollwheel: false,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        
+        var map = new google.maps.Map(document.getElementById("map"), jointOptions);
+        
+        var marker, i;
+        var infowindow = new google.maps.InfoWindow();
+        var latlngbounds = new google.maps.LatLngBounds();
+        
+        for (i = 0; i < jointLocations.length; i++) {
+
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(jointLocations[i][1], jointLocations[i][2]),
+                map: map
+            });
+            // zoom to fit
+            latlngbounds.extend(new google.maps.LatLng(jointLocations[i][1], jointLocations[i][2]));
+
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                    infowindow.setContent(jointLocations[i][0]);
+                    infowindow.open(map, marker);
+                }
+            })(marker, i));
+
+        }
+        map.fitBounds(latlngbounds);
+
+    </script>
+
+    {% else %}
+
+    <em>You have to enter a location to search for BBQ Joints. Try again.</em>
+
+    </div>
+
+    {% endif %}
+
+	{% endblock %}
