@@ -18,8 +18,9 @@
         {% endif %}
     </div>
     	
-    <br/>
     <div id="map"></div>
+
+    {% if joint.lon %}
 
     <script type="text/javascript">
         var jointLocation = new google.maps.LatLng({{joint.lat}}, {{joint.lon}});
@@ -35,6 +36,8 @@
             map: map
         });
     </script>
+    
+    {% endif %}
     
     <div id="jointRate">
     

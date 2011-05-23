@@ -30,7 +30,7 @@
 		<h1><a href="/">Kevin's BBQ Joints</a></h1>
 		<div id="userBar">
 		{% if user.is_authenticated %}
-		You are logged in as: {{ user.username }} <br/>(<a href="/user/logout">Logout</a>)
+		You are logged in as: <strong>{{ user.username }}</strong> <br/>(<a href="/user/logout">Logout</a>)
 		{% else %}
 		<a href="{%	url registration_register %}">Register</a>
 		or
@@ -50,6 +50,13 @@
 			<li><a href="">Contact</a></li>
 		</ul>
 	</nav>
+	
+	<section id="search">
+	    <form action="/search/" method="GET">
+    	    <input type="text" name="q" {% if query %}placeholder="{{query}}"{% else %}"Street Address, City, State, or ZIP"{% endif %} />
+    	    <input type="submit" value="Go" />
+    	</form>
+	</section>
 
 	<section id="content">
 		
