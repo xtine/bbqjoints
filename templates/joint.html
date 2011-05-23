@@ -11,8 +11,8 @@
     	<h3>{{ joint.name|safe }}</h3>
     	{{ joint.address }}<br/>
     	{{ joint.city }}, {{ joint.state }} {{ joint.zip }}<br/>
-    	{{ joint.phone }}<br/>
-    	<a href="{{ joint.url }}">{{ joint.url }}</a><br/>
+    	{% if joint.phone %}{{ joint.phone }}<br/>{% endif %}
+    	{% if joint.url %}<a href="{{ joint.url }}">{{ joint.url }}</a><br/>{% endif %}
     	{% if joint.chain %}it's a chain<br/>{% endif %}
     	{% if joint.notes %}
         {{ joint.notes|safe }}
