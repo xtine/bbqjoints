@@ -26,6 +26,12 @@ def state(request, state_abbr):
 def search(request):
 
     try:
+        filterChains = request.GET['filterChains']
+        filterChains = "AND chain = 0 "
+    except:
+        filterChains = ""
+
+    try:
         query = request.GET['q']
         
         if query == '':
@@ -45,20 +51,20 @@ def search(request):
                 print geocode[2], ", ", geocode[3]
 
                 lat = geocode[2]
-                lon = geocode[3]
+                lon = geocode[3]                
 
                 # Haversine Formula for nearest points
                 # Only show if the BBQ Joint is open
                 # TODO: Filter by Chain
-                j = Joints.objects.raw("SELECT id,  ( 3959 * acos( cos( radians(%s) ) * cos( radians( lat ) ) * cos( radians( lon ) - radians(%s) ) + sin( radians(%s) ) * sin( radians( lat ) ) ) ) AS distance FROM joints WHERE open = 1 HAVING distance < 50 ORDER BY distance LIMIT 0 , 11;" % (lat, lon, lat))
+                j = Joints.objects.raw("SELECT id,  ( 3959 * acos( cos( radians(%s) ) * cos( radians( lat ) ) * cos( radians( lon ) - radians(%s) ) + sin( radians(%s) ) * sin( radians( lat ) ) ) ) AS distance FROM joints WHERE open = 1 %sHAVING distance < 50 ORDER BY distance LIMIT 0 , 11;" % (lat, lon, lat, filterChains))
 
-            except:
+            except: # Error if can't lookup geocode
                 error = "The Search Function is not working right now, sorry."
                 context = RequestContext(request)
                 return render_to_response('search_results.html', {'error' : error}, context_instance=context)
 
             context = RequestContext(request)
-            return render_to_response('search_results.html', {'query' : query, 'joints': j, 'lat' : lat, 'lon' : lon}, context_instance=context)
+            return render_to_response('search_results.html', {'query' : query, 'joints': j, 'lat' : lat, 'lon' : lon, 'filterChains' : filterChains}, context_instance=context)
     
     except:
         error = "You have to enter a location to search for BBQ Joints."
