@@ -242,7 +242,7 @@ ul#joints li {
 .chain {
 	width: 48px;
 	height: 48px;
-	background: url(/media/img/sprites.png) -80px -40px no-repeat;
+	background: url(/media/img/sprites.png) -80px -60px no-repeat;
 }
 
 #map {
