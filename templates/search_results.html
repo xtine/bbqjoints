@@ -8,7 +8,7 @@
 
     <div id="searchResults">
 
-    {% if query %}
+    {% if not error %}
     
         <p>BBQ Joints near: <em>{{query}}</em></p>
         
@@ -70,7 +70,7 @@
 
     {% else %}
 
-    <em>You have to enter a location to search for BBQ Joints. Try again.</em>
+    <div class="error">Error: {{error}}</div>
 
     </div>
 
