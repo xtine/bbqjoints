@@ -17,6 +17,7 @@
                 <a href="/joint/{{joint.id}}/{{joint.name|slugify}}">{{joint.name}}</a><br/>
                 {{joint.address}}<br/>
                 {{joint.city}}, {{joint.state}} {{joint.zip}}<br/>
+                {% if joint.chain %}<div class="chain"></div>{% endif %}
                 <em>{{joint.distance|floatformat:"2"}} miles away</em><br/>
             </li>
         {% endfor %}
