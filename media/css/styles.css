@@ -395,8 +395,12 @@ footer {
 	text-transform: uppercase;
 	height: 33px;
 	background: #951a1a;
-	padding: 12px 0 0 0;
+	padding: 12px 20px 0 20px;
 	clear: both;
+}
+footer ul {
+	float: left;
+	margin: 0;
 }
 footer ul li {
 	display: inline;
@@ -405,6 +409,10 @@ footer ul li {
 footer ul li a {
 	color: #000;
 	text-decoration: none;
+}
+footer .copyright {
+	padding: 0 10px 0 0;
+	float: right;
 }
 
 /* Flames */
