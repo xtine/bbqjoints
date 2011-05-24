@@ -7,5 +7,6 @@ Users can register and login to review and rate particular joints.
 Settings:
 - LOCAL_MEDIA variable set so if running locally, it will use the MEDIA_ROOT path for media files.
 - Installed Apps:
+  * Alphafilter for Filtering by Alphabet in Joints Admin
   * Registration (https://bitbucket.org/ubernostrum/django-registration/) for User Registration.
   * South (http://south.aeracode.org/) for data migrations.
