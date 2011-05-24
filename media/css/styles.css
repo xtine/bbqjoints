@@ -164,7 +164,7 @@ section#search input[type="text"] {
 	height: 35px;
 	border: none;
 }
-.ie8 section#search input[type="text"] {
+.ie7 section#search input[type="text"], .ie8 section#search input[type="text"] {
 	padding: 10px 5px;
 	height: 15px;
 }
