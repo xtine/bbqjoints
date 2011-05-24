@@ -54,7 +54,7 @@ def search(request):
                 # Haversine Formula for nearest points
                 # Only show if the BBQ Joint is open
                 # TODO: Filter by Chain
-                j = Joints.objects.raw("SELECT id,  ( 3959 * acos( cos( radians(%s) ) * cos( radians( lat ) ) * cos( radians( lon ) - radians(%s) ) + sin( radians(%s) ) * sin( radians( lat ) ) ) ) AS distance FROM joints WHERE open = 1 %sHAVING distance < 50 ORDER BY distance LIMIT 0 , 11;" % (lat, lon, lat, filterChains))
+                j = Joints.objects.raw("SELECT id,  ( 3959 * acos( cos( radians(%s) ) * cos( radians( lat ) ) * cos( radians( lon ) - radians(%s) ) + sin( radians(%s) ) * sin( radians( lat ) ) ) ) AS distance FROM joints WHERE open = 1 %sHAVING distance < 50 ORDER BY distance LIMIT 0 , 15;" % (lat, lon, lat, filterChains))
 
             except: # Error if can't lookup geocode
                 error = "The Search Function is not working right now, sorry."
