@@ -57,7 +57,7 @@
 	<section id="search">
 	    <form action="/search/" method="GET">
     	    <input type="text" name="q" {% if query %}value="{{query}}"{% else %}placeholder="Street Address, City, State, or ZIP"{% endif %} />
-    	    <input type="submit" value="Go" />
+    	    <input type="submit" />
 
 	        <input type="checkbox" id="filterChains" name="filterChains" {% if filterChains %}checked{% endif %}/>
 	        <span class="filterChains">Filter Out Chains</span>
