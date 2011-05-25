@@ -9,21 +9,22 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title>Kevin's BBQ Joints - {% block title %}Front Page{% endblock %}</title>
+	<title>Kevin's BBQ Joints - {% block title %}{% endblock %}</title>
 	<meta name="description" content="Kevin's BBQ Joints">
 	<meta name="author" content="Kevin Kelly, Christine Cheung">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" href="/media/favicon.ico">
-	<link rel="apple-touch-icon" href="/media/img/apple-touch-icon.png">
+	<link rel="shortcut icon" href="/static/favicon.ico">
+	<link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
+    <link rel="shortcut icon" HREF="/static/favicon.ico">  
 
-	<link rel="stylesheet" href="/media/css/styles.css">
+	<link rel="stylesheet" href="/static/css/styles.css">
 	
-    <script src="/media/js/libs/modernizr-1.7.min.js"></script>
+    <script src="/static/js/libs/modernizr-1.7.min.js"></script>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
-    <script>window.jQuery || document.write('<script src="/media/js/libs/jquery-1.5.1.min.js">\x3C/script>')</script>
-	<script src="/media/js/script.js"></script>
+    <script>window.jQuery || document.write('<script src="/static/js/libs/jquery-1.5.1.min.js">\x3C/script>')</script>
+	<script src="/static/js/script.js"></script>
 	
 </head>
 
@@ -44,7 +45,7 @@
 	
 	<nav>
 		<ul>
-			<li><a href="/">BBQ Joints</a></li>
+			<li><a href="/joints">BBQ Joints</a></li>
 			<li><a href="/about">About</a></li>
 			<li><a href="/meats">Meats</a></li>
 			<li><a href="/rubsandsauces">Rubs & Sauces</a></li>
@@ -83,7 +84,7 @@
 
 	<footer>
 		<ul>
-			<li><a href="/">BBQ Joints</a></li>
+			<li><a href="/joints">BBQ Joints</a></li>
 			<li><a href="/about">About</a></li>
 			<li><a href="/meats">Meats</a></li>
 			<li><a href="/rubsandsauces">Rubs & Sauces</a></li>
@@ -97,12 +98,11 @@
 		</div>
 	</footer>
 
-	<script src="/media/js/libs/jquery.rating.js"></script>
-	<script src="/media/js/libs/jquery.MetaData.js"></script>
-
+	<script src="/static/js/libs/jquery.rating.js"></script>
+	<script src="/static/js/libs/jquery.MetaData.js"></script>
 
     <!--[if lt IE 7 ]>
-    <script src="/media/js/libs/dd_belatedpng.js"></script>
+    <script src="/static/js/libs/dd_belatedpng.js"></script>
     <script>DD_belatedPNG.fix('img, .png_bg');</script>
     <![endif]-->
 

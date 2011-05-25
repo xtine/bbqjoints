@@ -10,9 +10,14 @@ from django.utils.html import strip_tags
 
 
 def index(request):
+    context = RequestContext(request)
+    return render_to_response('index.html', context_instance=context)
+
+def states(request):
     list_of_states = States.objects.all().order_by('name')
     context = RequestContext(request)
     return render_to_response('states_listing.html', {'list_of_states': list_of_states}, context_instance=context)
+
 
 def state(request, state_abbr):
     try:

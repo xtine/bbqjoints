@@ -111,7 +111,7 @@ p {	margin: 0 0 10px 0; }
 li { list-style: none; }
 
 header {
-	background: #ecebe7 url(/media/img/header.png) 0 15px no-repeat;
+	background: #ecebe7 url(/static/img/header.png) 0 15px no-repeat;
 	height: 149px;
 	position: relative;
 }
@@ -154,7 +154,7 @@ nav ul li a {
 
 /* Search Bar */
 section#search {
-	background: #382810 url(/media/img/sprites.png) no-repeat;
+	background: #382810 url(/static/img/sprites.png) no-repeat;
 	padding: 0 0 0 420px;
 	height: 50px;
 }
@@ -171,7 +171,7 @@ section#search input[type="text"] {
 section#search input[type="submit"] {
 	width: 80px;
 	height: 50px;
-	background: url(/media/img/sprites.png) 0 -50px no-repeat;
+	background: url(/static/img/sprites.png) 0 -50px no-repeat;
 	border: none;
 	text-indent: -9999px;
 }
@@ -242,7 +242,7 @@ ul#joints li {
 .chain {
 	width: 48px;
 	height: 48px;
-	background: url(/media/img/sprites.png) -80px -60px no-repeat;
+	background: url(/static/img/sprites.png) -80px -60px no-repeat;
 }
 
 #map {
@@ -329,7 +329,7 @@ ul#joints li {
 }
 #reviews .flames {
 	height: 23px;
-	background:url(/media/img/flames.png) 0 -23px;
+	background:url(/static/img/flames.png) 0 -23px;
 }
 #reviews .f1 {
 	width: 17px;
@@ -417,7 +417,7 @@ footer .copyright {
 
 /* Flames */
 div.star-rating{float:left;width:19px;height:23px;text-indent:-999em;cursor:pointer;display:block;background:transparent;overflow:hidden;}
-div.star-rating,div.star-rating a{background:url(/media/img/flames.png) no-repeat 0 0px;}
+div.star-rating,div.star-rating a{background:url(/static/img/flames.png) no-repeat 0 0px;}
 div.star-rating a{display:block;width:17px;height:100%;background-position:0 0px;border:0;}
 div.star-rating-on a{background-position:0 -23px!important;}
 div.star-rating-hover a{background-position:0 -46px;}
