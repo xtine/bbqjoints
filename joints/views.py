@@ -1,9 +1,10 @@
 from django.shortcuts import get_object_or_404, render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
+
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
 
-from joints.models import Joints, States, Reviews
+from joints.models import Joints, States, Reviews, SearchLogs
 
 import datetime, urllib
 from django.utils.html import strip_tags
@@ -12,6 +13,7 @@ from django.utils.html import strip_tags
 def index(request):
     context = RequestContext(request)
     return render_to_response('index.html', context_instance=context)
+
 
 def states(request):
     list_of_states = States.objects.all().order_by('name')
@@ -27,6 +29,7 @@ def state(request, state_abbr):
         raise Http404
     context = RequestContext(request)
     return render_to_response('state.html', {'joints': j, 'state': s}, context_instance=context)
+
 
 def search(request):
 
@@ -58,7 +61,6 @@ def search(request):
 
                 # Haversine Formula for nearest points
                 # Only show if the BBQ Joint is open
-                # TODO: Filter by Chain
                 j = Joints.objects.raw("SELECT id,  ( 3959 * acos( cos( radians(%s) ) * cos( radians( lat ) ) * cos( radians( lon ) - radians(%s) ) + sin( radians(%s) ) * sin( radians( lat ) ) ) ) AS distance FROM joints WHERE open = 1 %sHAVING distance < 50 ORDER BY distance LIMIT 0 , 15;" % (lat, lon, lat, filterChains))
 
             except: # Error if can't lookup geocode
@@ -68,8 +70,12 @@ def search(request):
 
             # return if row count is greater than 0
             if len(list(j)) != 0:
+                # save into search log
+                SearchLogs(query=query, date = datetime.datetime.now(), ip = request.META['REMOTE_ADDR'] ).save()
+                # show results
                 context = RequestContext(request)
                 return render_to_response('search_results.html', {'query' : query, 'joints': j, 'lat' : lat, 'lon' : lon, 'filterChains' : filterChains}, context_instance=context)
+                
             else:
                 error = "Sorry, no BBQ Joints were found."
                 context = RequestContext(request)
@@ -79,7 +85,7 @@ def search(request):
         error = "You have to enter a location to search for BBQ Joints."
         context = RequestContext(request)
         return render_to_response('search_results.html', {'error' : error}, context_instance=context)
-        
+
 
 def joint(request, joint_id):
     try:
@@ -99,7 +105,8 @@ def joint(request, joint_id):
         user_review = None
     context = RequestContext(request)
     return render_to_response('joint.html', {'joint': j, 'state': s, 'reviews': reviews, 'user_review':user_review }, context_instance=RequestContext(request))
-    
+
+
 def review(request, joint_id):
     j = get_object_or_404(Joints, pk=joint_id)
     s = get_object_or_404(States, state_abbr = j.state)
@@ -148,5 +155,4 @@ def review(request, joint_id):
             'reviews': reviews,
             'error_message': "Can't submit without a rating.",
         }, context_instance=RequestContext(request))
-
 
