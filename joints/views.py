@@ -47,6 +47,8 @@ def search(request):
             context = RequestContext(request)
             return render_to_response('search_results.html', {'error' : error}, context_instance=context)
         else:
+            # save query to search log
+            SearchLogs(query=query, date = datetime.datetime.now(), ip = request.META['REMOTE_ADDR'] ).save()
 
             try:
 
@@ -70,8 +72,6 @@ def search(request):
 
             # return if row count is greater than 0
             if len(list(j)) != 0:
-                # save into search log
-                SearchLogs(query=query, date = datetime.datetime.now(), ip = request.META['REMOTE_ADDR'] ).save()
                 # show results
                 context = RequestContext(request)
                 return render_to_response('search_results.html', {'query' : query, 'joints': j, 'lat' : lat, 'lon' : lon, 'filterChains' : filterChains}, context_instance=context)
