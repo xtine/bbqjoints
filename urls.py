@@ -17,6 +17,7 @@ urlpatterns += patterns('',
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),
     (r'^user/', include('registration.urls')),
+    (r'^contact/', include('contact_form.urls')),
 )
 
 if settings.LOCAL_MEDIA:

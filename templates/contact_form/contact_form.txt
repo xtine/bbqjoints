@@ -1,0 +1,4 @@
+
+Name: {{name}} <{{email}}>
+
+Message: {{body}}

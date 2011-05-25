@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+    {% block title %}Contact Us{% endblock %}
+	{% block page_heading %}Contact Form{% endblock %}
+
+	{% block content %}	
+
+    <div id="contact">
+
+        <p>Suggestions for a BBQ Joint to be listed, or perhaps corrections on an existing BBQ Joint?<br/>
+        Or even just to say hello, we read and appreciate all feedback.</p>
+
+        <form action="/contact/" method="post">{% csrf_token %}
+        {{form}}
+        <input type="submit" value="Submit" />
+        </form>
+
+    </div>
+
+	{% endblock %}

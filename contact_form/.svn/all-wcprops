@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/svn/!svn/ver/50/trunk/contact_form
+END
+views.py
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/50/trunk/contact_form/views.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/34/trunk/contact_form/__init__.py
+END
+urls.py
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/41/trunk/contact_form/urls.py
+END
+forms.py
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/49/trunk/contact_form/forms.py
+END
