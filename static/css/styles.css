@@ -220,6 +220,23 @@ section article {
 	overflow: auto;
 }
 
+/* FRONT PAGE INDEX */
+
+.frontFeatureBox {
+	width: 355px;
+	height: 300px;
+	margin: 0 0 15px 0;
+	float: left;
+}
+
+.frontFeatureBox img {
+	-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	-moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
 /* BBQ Joints Listing by State */
 ul#stateList li {
 	font-size: 1.3em;
