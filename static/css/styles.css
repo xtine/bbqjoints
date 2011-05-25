@@ -224,17 +224,26 @@ section article {
 
 .frontFeatureBox {
 	width: 355px;
-	height: 300px;
+	height: 320px;
 	margin: 0 0 15px 0;
 	float: left;
 }
 
-.frontFeatureBox img {
+.frontFeatureBox img, .fullFeature img {
 	-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 	-moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 	box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
+}
+
+.fullFeature {
+	text-align: center;
+	padding: 15px 0;
+	margin: 15px 0;
+	border-top: 1px dashed #bbb;
+	border-bottom: 1px dashed #bbb;
+	clear: both;
 }
 
 /* BBQ Joints Listing by State */
