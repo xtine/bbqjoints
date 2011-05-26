@@ -122,15 +122,19 @@ header h1 a {
 	width: 469px;
 	height: 124px;
 	display: block;
+	float: left;
 }
 
 /* User Login */
 #userBar {
-	position: absolute;
-	right: 0;
-	top: 0;
-	padding: 10px 15px;
+	padding: 10px;
 	text-align: right;
+	float: right;
+}
+
+#topAd {
+	padding: 10px;
+	float: right;
 }
 
 /* Top Navigation */
