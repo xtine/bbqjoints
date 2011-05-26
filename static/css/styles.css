@@ -224,9 +224,13 @@ section article {
 
 .frontFeatureBox {
 	width: 355px;
-	height: 320px;
+	min-height: 320px;
 	margin: 0 0 15px 0;
 	float: left;
+}
+
+.callout {
+	font-size: 1.25em;
 }
 
 .frontFeatureBox img, .fullFeature img {
