@@ -5,8 +5,21 @@ A directory listing of BBQ Joints, written in the Django web framework.
 Users can register and login to review and rate particular joints.
 
 Settings:
+
 - LOCAL_MEDIA variable set so if running locally, it will use the MEDIA_ROOT path for media files.
+
 - Installed Apps:
+  * Joints, Content apps
   * Alphafilter for Filtering by Alphabet in Joints Admin
   * Registration (https://bitbucket.org/ubernostrum/django-registration/) for User Registration.
   * South (http://south.aeracode.org/) for data migrations.
+  * Contact Form
+  
+- SERVER_IP_REQUEST = 'REMOTE_ADDR' for local or dedicated servers, and 'HTTP_X_REAL_IP' if under a proxy
+
+- GOOGLE_ANALYTICS_ID, self explanatory
+
+Context Processors:
+'bbq.context_processors.googleAnalytics',
+'bbq.context_processors.getAds',
+
