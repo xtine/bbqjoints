@@ -1,6 +1,8 @@
 from django.shortcuts import get_object_or_404, render_to_response
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 
+from django.conf import settings
+
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
 
@@ -48,7 +50,7 @@ def search(request):
             return render_to_response('search_results.html', {'error' : error}, context_instance=context)
         else:
             # save query to search log
-            SearchLogs(query=query, date = datetime.datetime.now(), ip = request.META['REMOTE_ADDR'] ).save()
+            SearchLogs(query=query, date = datetime.datetime.now(), ip = request.META[settings.SERVER_IP_REQUEST] ).save()
 
             try:
 
