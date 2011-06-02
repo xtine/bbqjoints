@@ -141,9 +141,12 @@ header h1 a {
 nav {
 	background: #951a1a;
 	height: 40px;
+	padding: 0 27px;
 }
 nav ul {
-	padding: 9px 0 0 27px;
+	width: 760px;
+	padding: 9px 0 0 0;
+	float: left;
 }
 nav ul li {
 	margin: 0 25px 0 0;
@@ -154,6 +157,33 @@ nav ul li a {
 	color: #e9eae3;
 	letter-spacing: .07em;
 	text-decoration: none;
+}
+
+nav #fb {
+	background: url(/static/img/sprites.png) -140px -60px no-repeat;
+	width: 18px;
+	height: 19px;
+	margin: 10px 7px;
+	float: right;
+}
+nav #fb a {
+	width: 18px;
+	height: 19px;
+	display: block;
+	text-indent: -9999px;
+}
+nav #twitter {
+	background: url(/static/img/sprites.png) -165px -60px no-repeat;
+	width: 21px;
+	height: 19px;
+	margin: 10px 7px;
+	float: right;
+}
+nav #twitter a {
+	width: 21px;
+	height: 19px;
+	display: block;
+	text-indent: -9999px;
 }
 
 /* Search Bar */
