@@ -27,7 +27,7 @@ def state(request, state_abbr):
     try:
         j = Joints.objects.filter(state__state_abbr=state_abbr)
         s = States.objects.get(state_abbr=state_abbr)
-    except Joints.DoesNotExist:
+    except:
         raise Http404
     context = RequestContext(request)
     return render_to_response('state.html', {'joints': j, 'state': s}, context_instance=context)
