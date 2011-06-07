@@ -1,5 +1,5 @@
 {% load i18n %}
-{% trans "Activate account at" %} {{ site.name }}:
+{% trans "Activate account at" %} {{ site.name|safe }}:
 
 http://{{ site.domain }}{% url registration_activate activation_key %}
 

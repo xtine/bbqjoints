@@ -1,4 +1,4 @@
 
 Name: {{name}} <{{email}}>
 
-Message: {{body}}
+Message: {{body|safe}}
