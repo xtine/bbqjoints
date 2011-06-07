@@ -12,8 +12,8 @@ class Joints(models.Model):
     url = models.CharField(max_length=765, blank=True)
     phone = models.CharField(max_length=45, blank=True)
     fax = models.CharField(max_length=45, blank=True)
-    lon = models.FloatField(null=True, blank=True)
     lat = models.FloatField(null=True, blank=True)
+    lon = models.FloatField(null=True, blank=True)
     created = models.DateTimeField(default=datetime.datetime.now)
     modified = models.DateTimeField(default=datetime.datetime.now)
     chain = models.BooleanField(null=False, blank=False)
@@ -63,7 +63,7 @@ class Reviews(models.Model):
     
     class Meta:
         db_table = u'reviews'
-        ordering = ['modified']
+        ordering = ['-modified']
         verbose_name_plural = "Reviews"
         
     def __unicode__(self):

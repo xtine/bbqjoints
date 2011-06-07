@@ -13,7 +13,7 @@ class SmarterModelAdmin(admin.ModelAdmin):
         return super(SmarterModelAdmin, self).lookup_allowed(lookup, *args, **kwargs)
 
 class JointsAdmin(SmarterModelAdmin):
-    list_display = ('name', 'address', 'city', 'state', 'zip')
+    list_display = ('name', 'address', 'city', 'state', 'zip', 'created')
     
     valid_lookups = ('name')
         
